@@ -25,13 +25,13 @@ class Joiner:
         self.session.headers.update({"Authorization":self.instance.token})
         result=self.session.post(f"https://discord.com/api/v9/invites/{self.instance.invite}",json={
             'session_id': self.rand_str(32),
-        }).status_code
+        })
         
-        if result==200:
-            logger.printk(logger.color('green','Joined server')+f": {str(result)}")
+        if result.status_code==200:
+            logger.printk(logger.color('green','Joined server')+f": {str(result.status_code)}")
 
         else:
-            logger.printk(logger.color('red',result.text)+f": {str(result)}")
+            logger.printk(logger.color('red',result.text))
 
 class logger:
     colors_table = dtypes.OtherInfo.colortable
@@ -64,7 +64,7 @@ if __name__ == '__main__':
         header = dtypes.OtherInfo.headers
         instances.append(dtypes.Instance(
             client=tls_client.Session(
-            client_identifier=f"chrome_{random.randint(110,116)}",
+            client_identifier=f"chrome_{random.randint(110,115)}",
             random_tls_extension_order=True
         ),
             token=tokens[i],
