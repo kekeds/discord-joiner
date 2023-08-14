@@ -58,7 +58,10 @@ if __name__ == '__main__':
 
     instances = []
     max_threads=5
-    invite = input("discord.gg/")
+    invite = input("Discord invite: ")
+    invite = invite.replace("https://discord.gg/", "").replace("https://discord.com/invite/", "").replace("discord.gg/", "").replace("https://discord.com/invite/", "")
+    invite_parts = invite.split("/")
+
 
     for i in range(len(tokens)):
         header = dtypes.OtherInfo.headers
