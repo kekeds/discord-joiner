@@ -64,17 +64,19 @@ if __name__ == '__main__':
     invite = invite.replace("https://discord.gg/", "").replace("https://discord.com/invite/", "").replace("discord.gg/", "").replace("https://discord.com/invite/", "")
     invite_parts = invite.split("/")
 
-    for i in range(len(tokens)):
+    for token_ in tokens:
         header = dtypes.OtherInfo.headers
-        instances.append(dtypes.Instance(
-            client=tls_client.Session(
-                client_identifier=f"chrome_{random.randint(110, 115)}",
-                random_tls_extension_order=True
-            ),
-            token=tokens[i],
-            headers=header,
-            invite=invite
-        ))
+        instances.append(
+            dtypes.Instance(
+                client=tls_client.Session(
+                    client_identifier=f"chrome_{random.randint(110, 115)}",
+                    random_tls_extension_order=True,
+                ),
+                token=token_,
+                headers=header,
+                invite=invite,
+            )
+        )
 
     with concurrent.futures.ThreadPoolExecutor(max_workers=max_threads) as executor:
         for i in instances:
