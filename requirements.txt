@@ -1,0 +1,2 @@
+colorama==0.4.6
+tls-client==0.2.1
