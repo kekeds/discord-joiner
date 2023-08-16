@@ -43,7 +43,7 @@ class logger:
 
     @staticmethod
     def convert(color):
-        return logger.colors_table[color] if not color.__contains__("#") else color
+        return color if color.__contains__("#") else logger.colors_table[color]
 
     @staticmethod
     def color(opt, obj):
