@@ -53,7 +53,7 @@ class intilize:
     @staticmethod
     def start(i):
         Joiner(i).join()
-
+        
 if __name__ == '__main__':
     with open("tokens.txt") as file:
         tokens = [line.strip() for line in file]
@@ -61,8 +61,11 @@ if __name__ == '__main__':
     instances = []
     max_threads = 5
     invite = input("Discord invite: ")
-    invite = invite.replace("https://discord.gg/", "").replace("https://discord.com/invite/", "").replace("discord.gg/", "").replace("https://discord.com/invite/", "")
-    invite_parts = invite.split("/")
+    
+    try:
+        invite=invite.split("/")[-1]
+    except:
+        pass
 
     for token_ in tokens:
         header = dtypes.OtherInfo.headers
